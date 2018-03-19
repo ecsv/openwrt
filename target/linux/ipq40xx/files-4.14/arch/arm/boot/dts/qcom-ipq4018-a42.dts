@@ -25,27 +25,6 @@
 	model = "OpenMesh A42";
 	compatible = "openmesh,a42", "qcom,ipq4019";
 
-	reserved-memory {
-		#address-cells = <0x1>;
-		#size-cells = <0x1>;
-		ranges;
-
-		rsvd1@87000000 {
-			reg = <0x87000000 0x500000>;
-			no-map;
-		};
-
-		wifi_dump@87500000 {
-			reg = <0x87500000 0x600000>;
-			no-map;
-		};
-
-		rsvd2@87B00000 {
-			reg = <0x87b00000 0x500000>;
-			no-map;
-		};
-	};
-
 	soc {
 		mdio@90000 {
 			status = "okay";
