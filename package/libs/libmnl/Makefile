@@ -21,7 +21,7 @@ PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
-PKG_LICENSE:=LGPL-2.1+
+PKG_LICENSE:=LGPL-2.1-or-later
 
 include $(INCLUDE_DIR)/package.mk
 

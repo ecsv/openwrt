@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=mt76
 PKG_RELEASE=1
 
-PKG_LICENSE:=GPLv2
+PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=
 
 PKG_SOURCE_URL:=https://github.com/openwrt/mt76

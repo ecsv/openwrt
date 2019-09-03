@@ -19,7 +19,7 @@ PKG_HASH:=74e0fe75753dba3ac114531b5e73240452c789a3f3adccf5c51217da1d933b21
 PKG_MAINTAINER:=Yousong Zhou <yszhou4tech@gmail.com>
 
 PKG_FIXUP:=autoreconf
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 
 PKG_INSTALL:=1
 

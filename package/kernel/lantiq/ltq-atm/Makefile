@@ -10,7 +10,7 @@ PKG_NAME:=ltq-atm
 PKG_RELEASE:=2
 
 PKG_MAINTAINER:=John Crispin <john@phrozen.org>
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 
 include $(INCLUDE_DIR)/package.mk
 

@@ -17,7 +17,6 @@ PKG_HASH:=dec79694da1319acd2238ce95df57f3680fea2482096e483323fddf3d818d8be
 PKG_MAINTAINER:=Ted Hess <thess@kitschensync.net>
 
 PKG_LICENSE:=LGPL-2.1
-PKG_LICENSE:=Makefile.am
 
 include $(INCLUDE_DIR)/package.mk
 

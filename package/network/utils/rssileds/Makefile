@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=rssileds
 PKG_VERSION:=0.2
 PKG_RELEASE:=2
-PKG_LICNESE:=GPL-2.0+
+PKG_LICNESE:=GPL-2.0-or-later
 
 include $(INCLUDE_DIR)/package.mk
 

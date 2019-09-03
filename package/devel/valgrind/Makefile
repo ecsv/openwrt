@@ -16,7 +16,7 @@ PKG_SOURCE_URL:=http://sourceware.org/pub/valgrind/
 PKG_HASH:=417c7a9da8f60dd05698b3a7bc6002e4ef996f14c13f0ff96679a16873e78ab1
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 PKG_CPE_ID:=cpe:/a:valgrind:valgrind
 
 PKG_FIXUP = autoreconf

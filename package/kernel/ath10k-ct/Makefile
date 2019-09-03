@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=ath10k-ct
 PKG_RELEASE=1
 
-PKG_LICENSE:=GPLv2
+PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=
 
 PKG_SOURCE_URL:=https://github.com/greearb/ath10k-ct.git

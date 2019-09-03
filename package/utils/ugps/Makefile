@@ -17,7 +17,7 @@ PKG_SOURCE_VERSION:=cd7eabcd8c9d17dab3946002127a82ad2f9e68c2
 PKG_MIRROR_HASH:=04a5bfa3a67f94d823911751ba4f0dbfd99a2264b393e1e81fdf0641b873d579
 
 PKG_MAINTAINER:=John Crispin <john@phrozen.org>
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk

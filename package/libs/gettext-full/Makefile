@@ -18,7 +18,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/gettext-$(PKG_VERSION)
 HOST_BUILD_DIR:=$(BUILD_DIR_HOST)/gettext-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
-PKG_LICENSE:=GPL-3.0+
+PKG_LICENSE:=GPL-3.0-or-later
 PKG_CPE_ID:=cpe:/a:gnu:gettext
 
 PKG_FIXUP:=autoreconf

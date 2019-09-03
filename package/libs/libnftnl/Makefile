@@ -15,7 +15,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=https://netfilter.org/projects/$(PKG_NAME)/files
 PKG_HASH:=c8c7988347adf261efac5bba59f8e5f995ffb65f247a88cc144e69620573ed20
 PKG_MAINTAINER:=Steven Barth <steven@midlink.org>
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 
 PKG_FIXUP:=autoreconf
 

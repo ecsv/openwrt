@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=rtl8812au-ct
 PKG_RELEASE=2
 
-PKG_LICENSE:=GPLv2
+PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=
 
 PKG_SOURCE_URL:=https://github.com/greearb/rtl8812AU_8821AU_linux.git

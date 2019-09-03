@@ -11,7 +11,7 @@ PKG_NAME:=ltq-ptm
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=John Crispin <john@phrozen.org>
-PKG_LICENSE:=GPL-2.0+
+PKG_LICENSE:=GPL-2.0-or-later
 
 include $(INCLUDE_DIR)/package.mk
 

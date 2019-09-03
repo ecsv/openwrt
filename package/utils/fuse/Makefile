@@ -16,7 +16,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/libfuse/libfuse/releases/download/$(PKG_NAME)-$(PKG_VERSION)
 PKG_HASH:=832432d1ad4f833c20e13b57cf40ce5277a9d33e483205fc63c78111b3358874
 
-PKG_LICENSE:=LGPLv2.1 GPLv2
+PKG_LICENSE:=LGPL-2.1-or-later GPL-2.0-only
 PKG_LICENSE_FILES:=COPYING.LIB COPYING
 PKG_CPE_ID:=cpe:/a:fuse_project:fuse
 

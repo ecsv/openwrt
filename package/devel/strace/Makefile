@@ -16,7 +16,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://strace.io/files/$(PKG_VERSION)
 PKG_HASH:=3b7ad77eb2b81dc6078046a9cc56eed5242b67b63748e7fc28f7c2daf4e647da
 
-PKG_LICENSE:=BSD-3c
+PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=COPYRIGHT
 PKG_CPE_ID:=cpe:/a:paul_kranenburg:strace
 
