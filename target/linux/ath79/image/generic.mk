@@ -1484,6 +1484,15 @@ define Device/openmesh_om2p-v4
 endef
 TARGET_DEVICES += openmesh_om2p-v4
 
+define Device/openmesh_om2p-hs-v4
+  $(Device/openmesh_om2p-common)
+  SOC := qca9533
+  DEVICE_MODEL := OM2P-HS
+  DEVICE_VARIANT := v4
+  SUPPORTED_DEVICES += om2p-hsv4
+endef
+TARGET_DEVICES += openmesh_om2p-hs-v4
+
 define Device/plasmacloud_pa300-common
   SOC := qca9533
   DEVICE_VENDOR := Plasma Cloud
