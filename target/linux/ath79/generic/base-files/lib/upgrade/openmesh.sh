@@ -71,6 +71,7 @@ platform_do_upgrade_openmesh()
 	openmesh,om2p-v4|\
 	openmesh,om2p-hs|\
 	openmesh,om2p-hs-v2|\
+	openmesh,om2p-hs-v3|\
 	openmesh,om2p-hs-v4)
 		primary_kernel_mtd=3
 		;;
