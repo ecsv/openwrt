@@ -1502,6 +1502,15 @@ define Device/openmesh_om2p-hs-v2
 endef
 TARGET_DEVICES += openmesh_om2p-hs-v2
 
+define Device/openmesh_om2p-hs-v3
+  $(Device/openmesh_om2p)
+  SOC := ar9341
+  DEVICE_MODEL := OM2P-HS
+  DEVICE_VARIANT := v3
+  SUPPORTED_DEVICES += om2p-hsv3
+endef
+TARGET_DEVICES += openmesh_om2p-hs-v3
+
 define Device/openmesh_om2p-hs-v4
   $(Device/openmesh_om2p)
   SOC := qca9533
