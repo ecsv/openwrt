@@ -50,6 +50,7 @@ platform_do_upgrade() {
 	jjplus,ja76pf2)
 		echo "Sysupgrade disabled due bug FS#2428"
 		;;
+	openmesh,om2p-v4|\
 	plasmacloud,pa300|\
 	plasmacloud,pa300e)
 		PART_NAME="inactive"
