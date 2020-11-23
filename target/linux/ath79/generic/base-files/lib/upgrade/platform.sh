@@ -51,6 +51,7 @@ platform_do_upgrade() {
 		echo "Sysupgrade disabled due bug FS#2428"
 		;;
 	openmesh,om2p-v4|\
+	openmesh,om2p-hs-v4|\
 	plasmacloud,pa300|\
 	plasmacloud,pa300e)
 		PART_NAME="inactive"
