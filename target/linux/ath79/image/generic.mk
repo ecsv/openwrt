@@ -1614,6 +1614,24 @@ define Device/pisen_wmm003n
 endef
 TARGET_DEVICES += pisen_wmm003n
 
+define Device/openmesh_om2p-common
+  DEVICE_VENDOR := OpenMesh
+  DEVICE_MODEL := OM2P
+  DEVICE_PACKAGES := uboot-envtools
+  IMAGE_SIZE := 7168k
+  BLOCKSIZE := 256k
+  KERNEL := kernel-bin | append-dtb | lzma | uImage lzma | pad-to $$(BLOCKSIZE)
+  IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-rootfs | openmesh-image ce_type=OM2P | append-metadata
+endef
+
+define Device/openmesh_om2p-v4
+  $(Device/openmesh_om2p-common)
+  SOC := qca9533
+  DEVICE_VARIANT := v4
+  SUPPORTED_DEVICES += om2pv4
+endef
+TARGET_DEVICES += openmesh_om2p-v4
+
 define Device/plasmacloud_pa300-common
   SOC := qca9533
   DEVICE_VENDOR := Plasma Cloud
