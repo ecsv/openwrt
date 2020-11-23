@@ -46,6 +46,7 @@ platform_do_upgrade_dualboot_datachk() {
 	local next_boot_part="1"
 	case "$(board_name)" in
 	openmesh,om2p-v4|\
+	openmesh,om2p-hs|\
 	openmesh,om2p-hs-v4|\
 	plasmacloud,pa300|\
 	plasmacloud,pa300e)
