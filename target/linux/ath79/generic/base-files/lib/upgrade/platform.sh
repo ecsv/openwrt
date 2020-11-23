@@ -52,6 +52,7 @@ platform_do_upgrade() {
 		;;
 	openmesh,om2p-v4|\
 	openmesh,om2p-hs|\
+	openmesh,om2p-hs-v2|\
 	openmesh,om2p-hs-v4|\
 	plasmacloud,pa300|\
 	plasmacloud,pa300e)
