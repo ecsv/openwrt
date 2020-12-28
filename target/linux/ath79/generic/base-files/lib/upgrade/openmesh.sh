@@ -81,9 +81,28 @@ platform_do_upgrade_openmesh()
 	# take care of restoring a saved config
 	[ -n "$UPGRADE_BACKUP" ] && restore_backup="${MTD_CONFIG_ARGS} -j ${UPGRADE_BACKUP}"
 
+	# round up "read" rootfs size to multiple of 1024 bytes
+	#
+	# rootfs is usually "erase_block_size * blocks + 4 bytes" large.
+	# it is not possible to divide it in exactly 1024 byte large chunks
+	# because erase_block_size is 64K or 256K for these devices.
+	#
+	# instead read more data in than the rootfs is large to make sure
+	# that "End of filesystem marker" is included here. The only downside
+	# is the extra bogus data (sysupgrade metadata) after the
+	# deadc0de "End of filesystem marker".
+	#
+	# TODO: drop this completely and use
+	# `count=$rootfs_length iflags=skip_bytes,count_bytes` when busybox's
+	# dd supports count_bytes in flags.
+	rootfs_read_blocks=$((0x$rootfs_size))
+	if [ $((rootfs_read_block * 1024)) != $rootfs_length ]; then
+		rootfs_read_blocks=$((rootfs_read_blocks + 1))
+	fi
+
 	# write image parts
 	mtd -q erase inactive
-	dd if="$img_path" bs=1 skip=$((data_offset + cfg_length + kernel_length)) count=$rootfs_length 2>&- | \
+	dd if="$img_path" bs=1024 skip=$((data_offset + cfg_length + kernel_length)) count=$rootfs_read_blocks iflag=skip_bytes 2>&- | \
 		mtd -n -p $kernel_length $restore_backup write - $PART_NAME
 	dd if="$img_path" bs=1024 skip=$((data_offset + cfg_length)) count=$kernel_kbs iflag=skip_bytes 2>&- | \
 		mtd -n write - $PART_NAME
