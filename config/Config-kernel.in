@@ -2,6 +2,50 @@
 #
 # Copyright (C) 2006-2014 OpenWrt.org
 
+config KERNEL_VT
+    bool
+
+config KERNEL_GDB_SCRIPTS
+    select GDB_PYTHON
+    bool
+
+config KERNEL_HW_CONSOLE
+    bool
+
+config KERNEL_CONSOLE_POLL
+    bool
+
+config KERNEL_MAGIC_SYSRQ
+    bool
+
+config KERNEL_MAGIC_SYSRQ_SERIAL
+    bool
+
+config KERNEL_KGDB_SERIAL_CONSOLE
+    bool
+
+config KERNEL_KGDB_HONOUR_BLOCKLIST
+    bool
+
+config KERNEL_MIPS_FP_SUPPORT
+    depends on (mips || mipsel || mips64 || mips64el)
+    bool
+
+config KERNEL_KGDB
+    select KERNEL_VT
+    select KERNEL_GDB_SCRIPTS
+    select KERNEL_HW_CONSOLE
+    select KERNEL_CONSOLE_POLL
+    select KERNEL_MAGIC_SYSRQ
+    select KERNEL_MAGIC_SYSRQ_SERIAL
+    select KERNEL_KGDB_SERIAL_CONSOLE
+    select KERNEL_KGDB_HONOUR_BLOCKLIST
+    select KERNEL_MIPS_FP_SUPPORT if (mips || mipsel || mips64 || mips64el)
+    
+    depends on KERNEL_DEBUG_INFO
+    bool "Enable kernel debugger over serial"
+
+
 config KERNEL_BUILD_USER
 	string "Custom Kernel Build User Name"
 	default "builder" if BUILDBOT

@@ -143,6 +143,7 @@ define BuildKernel
   $(LINUX_DIR)/.image: $(STAMP_CONFIGURED) $(if $(CONFIG_STRIP_KERNEL_EXPORTS),$(KERNEL_BUILD_DIR)/symtab.h) FORCE
 	$(Kernel/CompileImage)
 	$(Kernel/CollectDebug)
+	+[ -z "$(CONFIG_KERNEL_GDB_SCRIPTS)" ] || $(KERNEL_MAKE) scripts_gdb
 	touch $$@
 	
   mostlyclean: FORCE
