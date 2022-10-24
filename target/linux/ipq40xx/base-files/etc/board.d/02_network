@@ -64,7 +64,8 @@ ipq40xx_setup_interfaces()
 	mikrotik,wap-ac)
 		ucidef_set_interface_lan "sw-eth1 sw-eth2"
 		;;
-	openmesh,a42)
+	openmesh,a42|\
+	openmesh,a62)
 		ucidef_set_interfaces_lan_wan "ethernet2" "ethernet1"
 		;;
 	zte,mf286d)
@@ -145,7 +146,8 @@ ipq40xx_setup_macs()
 		lan_mac=$(cat /sys/firmware/mikrotik/hard_config/mac_base)
 		label_mac="$lan_mac"
 		;;
-	openmesh,a42)
+	openmesh,a42|\
+	openmesh,a62)
 		label_mac="$(mtd_get_mac_binary "0:ART" 0x0)"
 		;;
 	pakedge,wr-1)
