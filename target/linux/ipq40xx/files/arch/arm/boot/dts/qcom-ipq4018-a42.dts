@@ -71,6 +71,7 @@
 		led-failsafe = &led_status_green;
 		led-running = &led_status_green;
 		led-upgrade = &led_status_green;
+		label-mac-device = &swport5;
 	};
 
 	leds {
@@ -144,7 +145,89 @@
 		compatible = "jedec,spi-nor";
 		reg = <0>;
 		spi-max-frequency = <24000000>;
+
 		/* partitions are passed via bootloader */
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			partition@0 {
+				label = "0:SBL1";
+				reg = <0x0000000 0x040000>;
+				read-only;
+			};
+
+			partition@40000 {
+				label = "0:MIBIB";
+				reg = <0x0040000 0x020000>;
+				read-only;
+			};
+
+			partition@60000 {
+				label = "0:QSEE";
+				reg = <0x0060000 0x060000>;
+				read-only;
+			};
+
+			partition@c0000 {
+				label = "0:CDT";
+				reg = <0x00c0000 0x010000>;
+				read-only;
+			};
+
+			partition@d0000 {
+				label = "0:DDRPARAMS";
+				reg = <0x00d0000 0x010000>;
+				read-only;
+			};
+
+			partition@e0000 {
+				label = "u-boot-env";
+				reg = <0x00e0000 0x010000>;
+			};
+
+			partition@f0000 {
+				label = "u-boot";
+				reg = <0x00f0000 0x080000>;
+				read-only;
+			};
+
+			partition@170000 {
+				label = "0:ART";
+				reg = <0x0170000 0x010000>;
+				read-only;
+				compatible = "nvmem-cells";
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				precal_art_1000: precal@1000 {
+					reg = <0x1000 0x2f20>;
+				};
+
+				precal_art_5000: precal@5000 {
+					reg = <0x5000 0x2f20>;
+				};
+
+				macaddr_gmac0: macaddr@0 {
+					reg = <0x0 0x6>;
+				};
+
+				macaddr_gmac1: macaddr@6 {
+					reg = <0x6 0x6>;
+				};
+			};
+
+			partition@180000 {
+				label = "inactive";
+				reg = <0x0180000 0xf40000>;
+			};
+
+			partition@10c0000 {
+				label = "inactive2";
+				reg = <0x10c0000 0xf40000>;
+			};
+		};
 	};
 };
 
@@ -177,19 +260,31 @@
 &swport4 {
 	status = "okay";
 	label = "ethernet2";
+
+	nvmem-cell-names = "mac-address";
+	nvmem-cells = <&macaddr_gmac1>;
 };
 
 &swport5 {
 	status = "okay";
 	label = "ethernet1";
+
+	nvmem-cell-names = "mac-address";
+	nvmem-cells = <&macaddr_gmac0>;
 };
 
 &wifi0 {
 	status = "okay";
 	qcom,ath10k-calibration-variant = "OM-A42";
+
+	nvmem-cell-names = "pre-calibration";
+	nvmem-cells = <&precal_art_1000>;
 };
 
 &wifi1 {
 	status = "okay";
 	qcom,ath10k-calibration-variant = "OM-A42";
+
+	nvmem-cell-names = "pre-calibration";
+	nvmem-cells = <&precal_art_5000>;
 };
