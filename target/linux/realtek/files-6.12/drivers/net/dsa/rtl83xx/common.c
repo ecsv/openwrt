@@ -1550,6 +1550,10 @@ static int __init rtl83xx_sw_probe(struct platform_device *pdev)
 	if (err)
 		return err;
 
+	err = devm_mutex_init(dev, &priv->counters_lock);
+	if (err)
+		return err;
+
 	priv->family_id = soc_info.family;
 	priv->id = soc_info.id;
 	switch(soc_info.family) {

@@ -639,7 +639,6 @@ struct rtldsa_counter {
 };
 
 struct rtldsa_counter_state {
-	spinlock_t lock;
 	ktime_t last_update;
 
 	struct rtldsa_counter symbol_errors;
@@ -676,6 +675,12 @@ struct rtldsa_counter_state {
 
 	struct rtldsa_counter rx_pause_frames;
 	struct rtldsa_counter tx_pause_frames;
+
+	/** @link_stat_lock: Protect link_stat */
+	spinlock_t link_stat_lock;
+
+	/** @link_stat: Prepared return data for .get_stats64 which can be accessed without mutex */
+	struct rtnl_link_stats64 link_stat;
 };
 
 struct rtl838x_port {
@@ -1162,6 +1167,13 @@ struct rtl838x_switch_priv {
 	u16 intf_mtus[MAX_INTF_MTUS];
 	int intf_mtu_count[MAX_INTF_MTUS];
 	struct delayed_work counters_work;
+
+	/**
+	 * @counters_lock: Protects the hardware reads happening from MIB
+	 * callbacks and the workqueue which reads the data
+	 * periodically.
+	 */
+	struct mutex counters_lock;
 };
 
 void rtl838x_dbgfs_init(struct rtl838x_switch_priv *priv);
