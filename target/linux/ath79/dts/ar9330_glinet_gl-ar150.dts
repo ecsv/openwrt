@@ -17,6 +17,10 @@
 		label-mac-device = &eth0;
 	};
 
+	chosen {
+		bootargs = "console=ttyATH0,115200 kgdboc=ttyATH0,115200 nokaslr";
+	};
+
 	leds {
 		compatible = "gpio-leds";
 
