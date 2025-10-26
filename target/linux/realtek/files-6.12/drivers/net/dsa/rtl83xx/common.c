@@ -1616,7 +1616,7 @@ static int __init rtl83xx_sw_probe(struct platform_device *pdev)
 		priv->n_lags = 16;
 		sw_w32(0, RTL930X_ST_CTRL);
 		priv->l2_bucket_size = 8;
-		priv->n_mst = 64;
+		priv->n_mst = 4;
 		priv->n_pie_blocks = 16;
 		priv->port_ignore = 0x3f;
 		priv->n_counters = 2048;

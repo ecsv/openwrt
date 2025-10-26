@@ -1809,6 +1809,8 @@ static void rtldsa_port_xstp_state_set(struct rtl838x_switch_priv *priv, int por
 	int pos = port;
 	int n = priv->port_width << 1;
 
+	pr_err("%s: port %d, state %u, mst_slot %u\n", __func__, port, state, mst_slot);
+
 	/* Ports above or equal CPU port can never be configured */
 	if (port >= priv->cpu_port)
 		return;
@@ -1856,6 +1858,8 @@ void rtl83xx_port_stp_state_set(struct dsa_switch *ds, int port, u8 state)
 	struct rtl838x_switch_priv *priv = ds->priv;
 	struct dsa_port *dp = dsa_to_port(ds, port);
 	unsigned int i;
+
+	pr_err("%s: port %d\n", __func__, port);
 
 	mutex_lock(&priv->reg_mutex);
 	rtldsa_port_xstp_state_set(priv, port, state, 0);
@@ -1939,6 +1943,8 @@ static int rtldsa_port_mst_state_set(struct dsa_switch *ds, int port,
 {
 	struct rtl838x_switch_priv *priv = ds->priv;
 	int mst_slot;
+
+	pr_err("%s: port %d, msti %u\n", __func__, port, st->msti);
 
 	mutex_lock(&priv->reg_mutex);
 
