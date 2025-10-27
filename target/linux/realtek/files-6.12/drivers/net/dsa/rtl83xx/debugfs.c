@@ -693,6 +693,80 @@ err:
 	rtl838x_dbgfs_cleanup(priv);
 }
 
+static void *msts_seq_start(struct seq_file *s, loff_t *pos)
+{
+	struct rtl838x_switch_priv *priv = file_inode(s->file)->i_private;
+	loff_t *spos;
+
+	if (*pos >= priv->n_mst - 1)
+		return NULL;
+
+	/* allocate iterator */
+	spos = kmalloc(sizeof(loff_t), GFP_KERNEL);
+	if (! spos)
+		return NULL;
+
+	*spos = *pos;
+
+	mutex_lock(&priv->reg_mutex);
+
+	return spos;
+}
+
+static void *msts_seq_next(struct seq_file *s, void *v, loff_t *pos)
+{
+	struct rtl838x_switch_priv *priv = file_inode(s->file)->i_private;
+	loff_t *spos = v;
+
+	*pos = ++*spos;
+	if (*pos + 1 >= priv->n_mst - 1)
+		return NULL;
+
+	return spos;
+}
+
+static void msts_seq_stop(struct seq_file *s, void *v)
+{
+	struct rtl838x_switch_priv *priv = file_inode(s->file)->i_private;
+
+	mutex_unlock(&priv->reg_mutex);
+	kfree(v);
+}
+
+static int msts_seq_show(struct seq_file *s, void *v)
+{
+	struct rtl838x_switch_priv *priv = file_inode(s->file)->i_private;
+	loff_t *spos = v;
+
+	if (priv->msts[*spos].msti == 0)
+		return 0;
+
+	seq_printf(s, "%llu: MSTI %u, refcnt %u\n", (unsigned long long)*spos + 1,
+		   priv->msts[*spos].msti, kref_read(&priv->msts[*spos].refcount));
+
+	return 0;
+}
+
+static const struct seq_operations msts_seq_ops = {
+	.start = msts_seq_start,
+	.next  = msts_seq_next,
+	.stop  = msts_seq_stop,
+	.show  = msts_seq_show
+};
+
+static int msts_open(struct inode *inode, struct file *file)
+{
+	return seq_open(file, &msts_seq_ops);
+}
+
+static const struct file_operations msts_fops = {
+	.owner = THIS_MODULE,
+	.open = msts_open,
+	.read = seq_read,
+	.llseek  = seq_lseek,
+	.release = seq_release,
+};
+
 void rtl930x_dbgfs_init(struct rtl838x_switch_priv *priv)
 {
 	struct dentry *dbg_dir;
@@ -707,4 +781,6 @@ void rtl930x_dbgfs_init(struct rtl838x_switch_priv *priv)
 	debugfs_create_file("drop_counters", 0400, dbg_dir, priv, &drop_counter_fops);
 
 	debugfs_create_file("l2_table", 0400, dbg_dir, priv, &l2_table_fops);
+
+	debugfs_create_file("msts", 0x200, dbg_dir, priv, &msts_fops);
 }
