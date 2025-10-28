@@ -70,6 +70,7 @@ realtek_setup_macs()
 	plasmacloud,esx28|\
 	plasmacloud,psx8|\
 	plasmacloud,psx10|\
+	plasmacloud,psx20|\
 	plasmacloud,psx28)
 		lan_mac_start=skip
 		lan_mac="$(get_mac_label)"

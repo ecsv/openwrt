@@ -24,6 +24,12 @@ define Device/plasmacloud_esx28
 endef
 TARGET_DEVICES += plasmacloud_esx28
 
+define Device/plasmacloud_psx20
+  $(Device/plasmacloud-common)
+  DEVICE_MODEL := PSX20
+endef
+TARGET_DEVICES += plasmacloud_psx20
+
 define Device/plasmacloud_psx28
   $(Device/plasmacloud-common)
   DEVICE_MODEL := PSX28

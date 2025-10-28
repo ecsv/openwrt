@@ -18,6 +18,7 @@ set_boot_part() {
 		fi
 		;;
 	plasmacloud,esx28|\
+	plasmacloud,psx20|\
 	plasmacloud,psx28)
 		if [ "$part_num" = "1" ]; then
 			echo "bootargs mtdparts=spi0.0:768k(u-boot),64k(u-boot-env),64k(u-boot-env2),5120k(reserved),13376k(firmware1),13376k(inactive)" > $setenv_script
@@ -75,6 +76,7 @@ platform_do_upgrade_dualboot_plasmacloud() {
 		primary_firmware_mtd=3
 		;;
 	plasmacloud,esx28|\
+	plasmacloud,psx20|\
 	plasmacloud,psx28)
 		primary_firmware_mtd=4
 		;;

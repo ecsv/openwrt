@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+/dts-v1/;
+
+#include "rtl9312_plasmacloud_common.dtsi"
+
+/ {
+	compatible = "plasmacloud,psx20", "realtek,rtl9312-soc";
+	model = "Plasma Cloud PSX20";
+
+	leds {
+		led-2 {
+			color = <LED_COLOR_ID_GREEN>;
+			function = "alarm-poe";
+			gpios = <&gpio1 28 GPIO_ACTIVE_LOW>;
+		};
+	};
+};
+
+&i2c_mst1 {
+	/* i2c for rtl8239 PoE PSE Chip */
+	i2c@5 {
+		reg = <5>;
+	};
+};
+
+&switch0 {
+	ports {
+		/* Fiber */
+		port@48 {
+			label = "lan17";
+		};
+
+		port@50 {
+			label = "lan18";
+		};
+
+		port@52 {
+			label = "lan19";
+		};
+
+		port@53 {
+			label = "lan20";
+		};
+	};
+};
+
+/delete-node/ &phy32;
+/delete-node/ &phy33;
+/delete-node/ &phy36;
+/delete-node/ &phy37;
+/delete-node/ &phy40;
+/delete-node/ &phy41;
+/delete-node/ &phy44;
+/delete-node/ &phy45;
+
+/delete-node/ &port32;
+/delete-node/ &port33;
+/delete-node/ &port36;
+/delete-node/ &port37;
+/delete-node/ &port40;
+/delete-node/ &port41;
+/delete-node/ &port44;
+/delete-node/ &port45;
