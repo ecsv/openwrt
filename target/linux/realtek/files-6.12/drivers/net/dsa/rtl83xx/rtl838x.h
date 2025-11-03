@@ -639,6 +639,11 @@ struct rtldsa_counter {
 };
 
 struct rtldsa_counter_state {
+	/**
+	 * @lock: protect updates to members of the structure when the
+	 * priv->counters_lock is not used. (see rtldsa_update_counters_might_sleep())
+	 */
+	spinlock_t lock;
 	ktime_t last_update;
 
 	struct rtldsa_counter symbol_errors;
