@@ -1442,6 +1442,12 @@ static void rtldsa_get_stats64(struct dsa_switch *ds, int port,
 		return;
 	}
 
+	if (priv->r->stat_update_counter_atomically) {
+		rtldsa_counters_lock(priv, port);
+		rtldsa_update_port_counters(priv, port);
+		rtldsa_counters_unlock(priv, port);
+	}
+
 	/* retrieve prepared return data without potentially sleeping via mutex */
 	spin_lock(&counters->link_stat_lock);
 	memcpy(s, &counters->link_stat, sizeof(*s));
