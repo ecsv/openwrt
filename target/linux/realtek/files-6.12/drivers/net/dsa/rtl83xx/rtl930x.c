@@ -2464,6 +2464,7 @@ const struct rtl838x_reg rtl930x_reg = {
 	.stat_rst = RTL930X_STAT_RST,
 	.stat_port_std_mib = RTL930X_STAT_PORT_MIB_CNTR,
 	.stat_port_prv_mib = RTL930X_STAT_PORT_PRVTE_CNTR,
+	.stat_counter_poll_interval = RTLDSA_COUNTERS_POLL_INTERVAL,
 	.traffic_enable = rtl930x_traffic_enable,
 	.traffic_disable = rtl930x_traffic_disable,
 	.traffic_set = rtl930x_traffic_set,
