@@ -35,21 +35,21 @@ Signed-off-by: Ryan Chen <rchen14b@gmail.com>
 -	if (data < 0)
 -		return IRQ_NONE;
 +	if (data < 0) {
-+		/*
-+		 * MDIO read can fail transiently when irqbalance migrates
-+		 * the IRQ to another CPU. Return IRQ_HANDLED to prevent
-+		 * the kernel from disabling this IRQ due to "nobody cared".
-+		 * The interrupt is level-triggered and will re-assert if
-+		 * there's a real pending event.
-+		 */
++		// TODO cleanup
++		// TODO cleanup
++		// TODO cleanup
++		// TODO cleanup
++		// TODO cleanup
++		// TODO cleanup
++		// TODO cleanup
 +		phydev_dbg(phydev, "INSR read failed: %d\n", data);
-+		return IRQ_HANDLED;
++		return IRQ_NONE;
 +	}
  
 +	/* Clear interrupt status - continue even if this fails */
  	if (phy_modify_mmd(phydev, MDIO_MMD_VEND1, 0x2DC, GENMASK(15, 0), 0xFF) < 0)
 -		return IRQ_NONE;
-+		phydev_dbg(phydev, "Failed to clear interrupt status\n");
++		return IRQ_NONE;
  
  	if (data & RTL826X_VND2_INER_LINK_STATUS) {
  		phydev_dbg(phydev, "RTK_PHY_INTR_LINK_CHANGE\n");
@@ -64,12 +64,12 @@ Signed-off-by: Ryan Chen <rchen14b@gmail.com>
 -			return IRQ_NONE;
 +		if (phy_modify_mmd(phydev, MDIO_MMD_VEND2, 0xD8A2, BIT(15), 0) < 0) {
 +			phydev_dbg(phydev, "Failed to clear PME status (step 1)\n");
-+			return IRQ_HANDLED;
++			return IRQ_NONE;
 +		}
 +
 +		if (phy_modify_mmd(phydev, MDIO_MMD_VEND2, 0xD8A2, BIT(15), 1 << 15) < 0) {
 +			phydev_dbg(phydev, "Failed to clear PME status (step 2)\n");
-+			return IRQ_HANDLED;
++			return IRQ_NONE;
 +		}
  	}
  
