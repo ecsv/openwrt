@@ -172,6 +172,14 @@
 	PHY_C45(25, 1)
 };
 
+&phy24 {
+	realtek,patch-disabled;
+};
+
+&phy25 {
+	realtek,patch-disabled;
+};
+
 &switch0 {
 	ethernet-ports {
 		#address-cells = <1>;

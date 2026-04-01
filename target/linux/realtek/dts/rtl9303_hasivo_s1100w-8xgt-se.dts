@@ -133,11 +133,43 @@
 	PHY_C45(20, 3)
 };
 
+&phy0 {
+	realtek,patch-disabled;
+};
+
+&phy8 {
+	realtek,patch-disabled;
+};
+
+&phy16 {
+	realtek,patch-disabled;
+};
+
+&phy20 {
+	realtek,patch-disabled;
+};
+
 &mdio_bus3 {
 	PHY_C45(24, 16)
 	PHY_C45(25, 17)
 	PHY_C45(26, 18)
 	PHY_C45(27, 19)
+};
+
+&phy24 {
+	realtek,patch-disabled;
+};
+
+&phy25 {
+	realtek,patch-disabled;
+};
+
+&phy26 {
+	realtek,patch-disabled;
+};
+
+&phy27 {
+	realtek,patch-disabled;
 };
 
 &switch0 {
